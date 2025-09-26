@@ -1,51 +1,30 @@
-import React, { createContext, ReactNode, useEffect, useState } from 'react';
-import keycloak, { initKeycloak } from '../auth/keyclock.ts';
-import type { KeycloakInstance } from 'keycloak-js';
-
-interface KeycloakContextProps {
-  keycloak?: KeycloakInstance;
-  authenticated: boolean;
-  initialized: boolean;
-}
+import { createContext, useState } from 'react';
+import keycloak from '../auth/keyclock.ts';
+import { KeycloakContextProps, ContextProps } from '../types/authType.ts';
 
 export const KeycloakContext = createContext<KeycloakContextProps>({
+  keycloak,
   authenticated: false,
   initialized: false,
+  setAuthenticated: () => {},
+  setInitialized: () => {},
 });
 
-interface Props {
-  children: ReactNode;
-  authenticated: boolean;
-}
-
-export const KeycloakProvider = ({ children }: Props) => {
+export const KeycloakProvider = ({ children }: ContextProps) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
- useEffect(() => {
-    // Καλούμε initKeycloak μόνο αν το keycloak δεν έχει ήδη αρχικοποιηθεί
-    if (!keycloak.authenticated && !initialized) {
-      initKeycloak().then((auth) => {
-        setAuthenticated(auth);
-        setInitialized(true);
-      });
-    } else if (keycloak.authenticated) {
-      setAuthenticated(true);
-      setInitialized(true);
-    }
-    // eslint-disable-next-line
-  }, []);
- // Αν δεν έχει γίνει init ή δεν είναι authenticated, μην κάνεις render τα children
-  if (!initialized) {
-    return <div>Loading...</div>;
-  }
-  if (!authenticated) {
-    // Το keycloak.login() καλείται ΜΟΝΟ από το initKeycloak, όχι εδώ!
-    return null;
-  }
-  return (
-    <KeycloakContext.Provider value={{ keycloak, authenticated, initialized }}>
+  return ( 
+    <KeycloakContext.Provider
+    value={{
+      keycloak,
+      authenticated,
+      initialized,
+      setAuthenticated,
+      setInitialized
+    }}
+    >
       {children}
     </KeycloakContext.Provider>
-  );
-};
+  )
+}
