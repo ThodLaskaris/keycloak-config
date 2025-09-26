@@ -8,11 +8,15 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
+  IonButton
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, logOutOutline,
+   mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, 
+   trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.css';
+import { keycloak } from '../auth/keyclock.ts';
 
 interface AppPage {
   url: string;
@@ -65,6 +69,10 @@ const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 const Menu: React.FC = () => {
   const location = useLocation();
 
+  const handleLogout = () => {
+    keycloak.logout({ redirectUri: window.location.origin });
+  }
+
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
@@ -92,6 +100,15 @@ const Menu: React.FC = () => {
             </IonItem>
           ))}
         </IonList>
+
+          <IonList>
+          <IonItem button onClick={handleLogout}>
+            <IonIcon aria-hidden="true" slot="start" icon={logOutOutline} />
+            <IonLabel>Logout</IonLabel>
+          </IonItem>
+        </IonList>
+
+
       </IonContent>
     </IonMenu>
   );
