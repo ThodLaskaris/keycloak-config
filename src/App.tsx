@@ -15,7 +15,7 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
-import DevicesPage from './pages/DevicesPage.tsx';
+import DevicesPage from './pages/tables/DevicesPage.tsx';
 
 setupIonicReact();
 

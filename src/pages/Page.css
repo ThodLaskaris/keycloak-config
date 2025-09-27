@@ -1,0 +1,9 @@
+.custom-select-popover {
+  --width: 80px;
+}
+ion-menu {
+  --width: 230px; /* ή ό,τι πλάτος θέλεις */
+  width: 230px !important;
+  min-width: 120px;
+  max-width: 240px;
+}

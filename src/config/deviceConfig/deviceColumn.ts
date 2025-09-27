@@ -1,5 +1,4 @@
 export const deviceColumn = [
-    {header: 'ID', key: 'id'},
     {header: 'Name', key: 'name'},
     {header: 'EUID', key: 'euid'},
     {header: 'Lat', key: 'lat'},

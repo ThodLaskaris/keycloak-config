@@ -8,13 +8,12 @@ export const keycloak = new Keycloak({
 
 export async function initKeycloak() {
   try {
-    const authenticated = await keycloak.init({ onLoad: 'login-required', pkceMethod: 'S256' });
-    if (authenticated) console.log('Keycloak success');
-    else console.warn('Keycloak authentication failed');
-    return authenticated;
+    await keycloak.init({
+      onLoad: 'login-required',
+      pkceMethod: 'S256',
+    })
   } catch (error) {
-    console.error(`Keycloak initialization failed: ${error}`);
-    return false;
+    console.error(`Keycloak init fail ${error}`); 
   }
 }
 

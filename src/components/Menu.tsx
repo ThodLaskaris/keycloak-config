@@ -107,8 +107,6 @@ const Menu: React.FC = () => {
             <IonLabel>Logout</IonLabel>
           </IonItem>
         </IonList>
-
-
       </IonContent>
     </IonMenu>
   );
