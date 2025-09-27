@@ -1,9 +1,9 @@
 import Keycloak from 'keycloak-js';
 
 export const keycloak = new Keycloak({
-  url: String(import.meta.env.VITE_KEYCLOAK_URL),
-  realm: String(import.meta.env.VITE_KEYCLOAK_REALM),
-  clientId: String(import.meta.env.VITE_KEYCLOAK_CLIENT_ID),
+  url: import.meta.env.VITE_KEYCLOAK_URL,
+  realm: import.meta.env.VITE_KEYCLOAK_REALM,
+  clientId: import.meta.env.VITE_KEYCLOAK_CLIENT_ID,
 });
 
 export async function initKeycloak() {

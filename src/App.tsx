@@ -15,6 +15,7 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
+import DevicesPage from './pages/DevicesPage.tsx';
 
 setupIonicReact();
 
@@ -30,6 +31,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/dashboard/:name" exact={true}>
               <Page />
+            </Route>
+            <Route path="/dashboard/devices" exact={true}>
+              <DevicesPage />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>

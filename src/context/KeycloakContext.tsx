@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react';
 import keycloak from '../auth/keyclock.ts';
-import { KeycloakContextProps, ContextProps } from '../types/authType.ts';
+import { ContextProps, KeycloakContextProps } from '../types/context/api/authType.ts';
+
 
 export const KeycloakContext = createContext<KeycloakContextProps>({
   keycloak,

@@ -7,7 +7,7 @@ import { KeycloakProvider } from './context/KeycloakContext.tsx';
 const container = document.getElementById('root');
 const root = createRoot(container!);
 
-initKeycloak().then((authenticated) => {
+initKeycloak().then(() => {
 root.render(
   <React.StrictMode>
     <KeycloakProvider>
